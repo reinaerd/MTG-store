@@ -1,0 +1,10 @@
+@using Microsoft.AspNetCore.Identity
+<div id="input-container">
+    <input type="text" name="searchInput" id="searchInput" placeholder="Search for a specific card..."> 
+</div>
+<div id="filter-container">
+    <a asp-controller="Shop" asp-action="Index" asp-route-sortOrder="NameAsc" class="filters">Filter Name Ascending</a>
+    <a asp-controller="Shop" asp-action="Index" asp-route-sortOrder="NameDesc" class="filters">Filter Name Descending</a>
+    <a asp-controller="Shop" asp-action="Index" asp-route-sortOrder="Rarity" class="filters">Filter On Rarity</a>
+    <a asp-controller="Shop" asp-action="Index" asp-route-sortOrder="Type" class="filters">Filter On Type</a>
+</div>

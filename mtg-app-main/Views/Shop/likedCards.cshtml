@@ -1,0 +1,58 @@
+<div class="text-center">
+    <h1 class="display-4">Your liked cards</h1>
+    <h2>Here you have a page of all the cards you like!</h2>
+        <p id="no-likes"></p>
+        <div id="liked-cards">
+            
+        </div>    
+</div>
+
+
+<script>
+    window.onload = function(){
+        loadLikedCards();
+    }
+
+    function loadLikedCards(){
+        let currentLikes = JSON.parse(localStorage.getItem('Likes'));
+        if(!currentLikes){
+            document.querySelector("#no-likes").innerHTML = "You have no liked cards yet..."
+        }else{
+            for(let i = 0; i < currentLikes.length; i++){
+                let OriginalImageUrl = currentLikes[i].url;
+                let formattedUrl = OriginalImageUrl.slice(1, -1);
+                document.querySelector("#liked-cards").innerHTML += `
+                <div class="card" id="${currentLikes[i].id}">
+                    <h2 class="card-name" id="cardname">${currentLikes[i].name}</h2>
+                        <div class="img-container">
+                            <img src="${formattedUrl}" alt="cardImage" valign="bottom"/>
+            
+                        </div>
+                        <button class="removeLike" onclick="removeFromLikes(${currentLikes[i].id})">Delete from Likes</button>
+                </div>`;
+            }
+             
+        }
+    }
+
+    function removeFromLikes(id){
+        document.getElementById(id).remove();
+        removeFromLocalStorage(id);
+        location.reload();
+    }
+
+    function removeFromLocalStorage(id){
+        let curString = localStorage.getItem('Likes');
+        let curObjArray = JSON.parse(curString);
+        let indexOfObj = curObjArray.findIndex(obj => {
+            return obj.id === id;
+        });
+
+        curObjArray.splice(indexOfObj,1);
+        if(!curObjArray.length){
+            localStorage.clear();
+        }else{
+            localStorage.setItem('Likes', JSON.stringify(curObjArray));
+        }
+    }
+</script>

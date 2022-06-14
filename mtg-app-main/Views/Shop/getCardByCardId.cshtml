@@ -1,0 +1,54 @@
+@model mtg_lib.Library.Models.Card;
+
+<div>
+    <h1>@Model.Name</h1>
+    <img src= "@Model.OriginalImageUrl" alt="cardImage" valign="bottom"/>
+    <p class="text-p">@Model.Text</p>
+    <h2>Price: <span id="price"> €</span></h2>
+    <h3>Statistics</h3>
+    <table>
+        <tr>
+            <td>Type</td>
+            <td>@Model.Type</td>
+        </tr>
+        <tr>
+            <td>Rarity Code</td>
+            <td>@Model.RarityCode</td>
+        </tr>
+        <tr>
+            <td>Set Code</td>
+            <td>@Model.SetCode</td>
+        </tr>
+        <tr>
+            <td>Island Trading</td>
+            <td>Helen Bennett</td>
+        </tr>
+</table>
+</div>
+
+<div>
+    <form asp-action="AddToCart" asp-controller="Shop" asp-route-id="@Model.Id">
+        <button class="buy-button">Add To Cart</button>
+        <button type="button" class="like-button" onclick="addCardToLikes(obj)">Add To Likes</button>
+    </form>
+    
+</div>
+
+<hr></hr>
+<a asp-action="Index">Back</a>
+
+<script>
+    let price = 0 + 10 * Math.random();
+    price = price.toFixed(2);
+    window.onload = function(){
+        document.querySelector("#price").innerHTML = price.toString();
+    }
+
+    const obj = {
+        id: ('@Html.Raw(Json.Serialize(Model.Id))'),
+        name: ('@Html.Raw(Json.Serialize(Model.Name))'),
+        url: ('@Html.Raw(Json.Serialize(Model.OriginalImageUrl))')
+    }
+
+
+</script>

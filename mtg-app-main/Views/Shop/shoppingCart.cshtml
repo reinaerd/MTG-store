@@ -1,0 +1,48 @@
+@model List<mtg_lib.Library.Models.Card>
+<div class="text-center" id="full-cart">
+    <h1 class="display-4">Your Basket</h1>
+    <table>
+        <tbody id="basketList">
+            <tr>
+                <th>Card</td>
+                <th>Price</th>
+                <th>Delete</th>
+            </tr>
+            @foreach (var item in @Model)
+            {
+                <tr id="@item.Id">
+                    <td> @item.Name <br> <img src="@item.OriginalImageUrl"/></td>
+                    <td>Price: <span class="random-price" onload="loadPrice(@item.Id)"></span></td>
+                    <td>
+                        <form asp-action="removeCardFromShoppingCart" asp-controller="Shop" asp-route-id="@item.Id">
+                            <button class="deleteCard">Delete from basket</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td>Total Price:</td>
+                <td><span id="totalPrice"></span></td>
+            </tr>
+        </tfoot>
+</table>
+<form asp-action="ThankYou" asp-controller="Shop">
+    <button class="buy-button">Buy Cards</button>
+</form>
+</div>
+
+<script>
+    window.onload = function(){
+        let totalPrice = Number(0);
+        document.querySelectorAll(".random-price").forEach(item => {
+            let price = 0 + 10 * Math.random();
+            price = price.toFixed(2);
+            item.innerHTML = price.toString();
+            totalPrice += Number(price);
+        });
+        document.querySelector("#totalPrice").innerHTML = totalPrice.toString();
+    }
+</script>

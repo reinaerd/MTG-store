@@ -1,0 +1,145 @@
+html {
+  font-size: 14px;
+  position: relative;
+  min-height: 100%;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.topnav {
+  overflow: hidden;
+}
+
+.topnav .search-container {
+  float: right;
+  width: 100%;
+}
+
+form {
+  width: 100%;
+}
+
+.topnav input[type=text] {
+  padding: 0.6rem;
+  margin-top: 0.8rem;
+  font-size: 1.7rem;
+  border: none;
+  width: 90%;
+}
+
+.topnav .search-container button {
+  float: right;
+  padding: 0.6rem 1rem;
+  margin-top: 0.8rem;
+  background: #ddd;
+  font-size: 1.7rem;
+  width: 10%;
+  border: none;
+  cursor: pointer;
+}
+
+.topnav .search-container button:hover {
+background: #ccc;
+}
+
+@media screen and (max-width: 600px) {
+  .topnav .search-container {
+    float: none;
+  }
+  .topnav input[type=text], .topnav .search-container button {
+    float: none;
+    display: block;
+    text-align: left;
+    width: 100%;
+    margin: 0;
+    padding: 1.4rem;
+  }
+  .topnav input[type=text] {
+    border: 0.1rem solid #ccc;  
+  }
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+input{
+  margin-bottom: 1rem;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+.cards, #liked-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 25%;
+  margin: 20px;
+  padding: 1%;
+  cursor: pointer;
+}
+
+.img-container {
+  margin-top: auto;
+}
+
+.img-container img {
+  width: 100%;
+  justify-self: flex-end;
+}
+
+.text-p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.buy-button, .like-button, .removeLike, .filters{
+  margin-right: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  padding: 1rem;
+  background-color: #85bb65;
+  font-weight: bold;
+  color: white;
+  border-color: transparent;
+  border-radius: 15px;
+}
+
+.deleteCard{
+  padding: 0.3rem;
+  background-color: #85bb65;
+  font-weight: bold;
+  color: white;
+  border-color: transparent;
+  border-radius: 15px;
+}
+
+#filter-container, #input-container{
+  margin-bottom: 1rem;
+}
+
+#filter-container {
+  display: flex;
+  justify-content: center;
+}

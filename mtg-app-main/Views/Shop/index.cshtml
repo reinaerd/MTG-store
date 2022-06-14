@@ -1,0 +1,49 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+@model IEnumerable<mtg_lib.Library.Models.Card>;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Shoppy</h1>
+    <h2>Salespage for all the MTG cards you want and need in your life</h2>
+<div class="topnav">
+<div class="search-container">
+                    <partial name="_SearchPartial"/>
+                    </div>
+                </div>
+
+    <div class="cards-div"></div>
+    <table>
+        <tbody>
+<div class="cards">
+@if(Model == null){
+    <h1>false</h1>
+}else{
+@foreach (var item in Model){
+    var url = item.Image;
+@if(item.OriginalImageUrl != null){
+<a  asp-controller="Shop" 
+    asp-action="GetCardByCardId" 
+    asp-route-cardId="@item.Id">
+    <div class="card">
+        <h2 class="card-name" id="cardname">@item.Name</h2>
+        <div class="img-container">
+            <img src= "@item.OriginalImageUrl" alt="cardImage" valign="bottom"/>
+            <a  asp-controller="Shop" 
+                    asp-action="GetCardByCardId" 
+                    asp-route-cardId="@item.Id">
+                </a>
+        </div>
+    </div>    
+</a>      
+}   
+}
+}
+</div>
+
+
+
